@@ -15,3 +15,6 @@ alias kdr="kubectl describe replicaset"
 alias ka="kubectl apply -f"
 alias ke="kubectl edit"
 alias cls="clear"
+
+# kubectl run nginx --image=nginx --dry-run=client -o yaml > pod.yaml
+# use https://github.com/ahmetb/kubectl-aliases/blob/master/.kubectl_aliases now
