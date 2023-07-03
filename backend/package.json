@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./src/bin/www"
+    "start": "node ./bin/www",
+    "server": "babel-node ./src/bin/www",
+    "dev": "npm-run-all server"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
