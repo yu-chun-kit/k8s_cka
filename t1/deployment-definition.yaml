@@ -6,11 +6,6 @@ metadata:
     app: nginx
     tier: frontend
 spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: nginx
-      tier: frontend
   template:
     metadata:
       labels:
@@ -18,7 +13,12 @@ spec:
         tier: frontend
     spec:
       containers:
-        - name: nginx
-          image: nginx
-          ports:
-            - containerPort: 80
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+      tier: frontend
