@@ -24,3 +24,18 @@ wget https://storage.googleapis.com/kubernetes-release/v1.13.0/bin/linux/amd64/k
 
 # view kubelet options
 ps -aux | grep kubelet
+
+# install kube-proxy
+wget https://storage.googleapis.com/kubernetes-release/release/v1.13.0/bin/linux/amd64/kube-proxy
+
+# view kubelet proxy -kubeadm
+kubectl get pod -n kube-system
+kubectl get damonset -n kube-system
+
+kubectl run nginx --image nginx
+kubectl get pods
+
+# create pod
+kubectl create -f pod-definition.yml
+# get pod detail
+kubectl describe pod myapp-pd
