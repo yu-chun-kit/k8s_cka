@@ -39,3 +39,5 @@ kubectl get pods
 kubectl create -f pod-definition.yml
 # get pod detail
 kubectl describe pod myapp-pd
+# apply (could update I think) pod
+kubectl apply -f pod.yaml
