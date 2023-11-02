@@ -41,3 +41,10 @@ kubectl create -f pod-definition.yml
 kubectl describe pod myapp-pd
 # apply (could update I think) pod
 kubectl apply -f pod.yaml
+
+# scale replicaset
+kubectl replace -f replicaset-definition.yml
+# or
+kubectl scale --replicas=6 -f replicaset-definition.yml
+# or
+kubectl scale --replicas=6 replicaset myapp-rc
