@@ -48,3 +48,8 @@ kubectl replace -f replicaset-definition.yml
 kubectl scale --replicas=6 -f replicaset-definition.yml
 # or
 kubectl scale --replicas=6 replicaset myapp-rc
+
+k get po
+k get 
+k get svc
+k get deploy
