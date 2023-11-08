@@ -46,3 +46,9 @@ kubectl apply -f pod.yaml
 kubectl create deployment httpd-frontend --image=httpd:2.4-alpine --replicas=3
 # or yaml file by dry-run
 kubectl create deployment httpd-frontend --image=httpd:2.4-alpine --replicas=3 --dry-run -o yaml > pod-dry-run.yaml
+# scale replicaset
+kubectl replace -f replicaset-definition.yml
+# or
+kubectl scale --replicas=6 -f replicaset-definition.yml
+# or
+kubectl scale --replicas=6 replicaset myapp-rc
