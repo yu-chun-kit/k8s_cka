@@ -25,3 +25,5 @@ set shiftwidth=2
 # -n -> --namespace # 指定 namespace scope
 # 範例：
 # $k get po -n kube-system
+
+# `k replace` should be better than `k edit`
