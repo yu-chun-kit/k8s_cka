@@ -61,3 +61,15 @@ k get ns # namespace
 
 # complete delete and replace
 k replace --force -f nginx.yaml
+
+# -l to add label in imperative command
+k run redis --image=redis:alpine -l tier=db --dry-run=client -o yaml
+
+# create service (default clusterIP)
+k expose pod redis --port=6379 --name redis-service --dry-run=client -o yaml
+# or (will not use label as selector)
+k create service clusterip redis --tcp=6379:6379 --dry-run=client -o yaml
+
+k expose pod nginx --type=NodePort --port=80 --name=nginx-service --dry-run=client -o yaml
+
+
