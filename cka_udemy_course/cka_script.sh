@@ -16,7 +16,7 @@ wget https://storage.googleapis.com/kubernetes-release/release/v1.13.0/bin/linux
 
 # view kube-scheduler options - kubeadm
 cat /etc/kubernetes/manifests/kube-scheduler.yaml
-# or 
+# or
 ps -aux | grep kube-scheduler
 
 # installing kubelet
@@ -42,10 +42,9 @@ kubectl describe pod myapp-pd
 # apply (could update I think) pod
 kubectl apply -f pod.yaml
 
-
 kubectl create deployment httpd-frontend --image=httpd:2.4-alpine --replicas=3
 # or yaml file by dry-run
-kubectl create deployment httpd-frontend --image=httpd:2.4-alpine --replicas=3 --dry-run -o yaml > pod-dry-run.yaml
+kubectl create deployment httpd-frontend --image=httpd:2.4-alpine --replicas=3 --dry-run -o yaml >pod-dry-run.yaml
 # scale replicaset
 kubectl replace -f replicaset-definition.yml
 # or
@@ -70,6 +69,5 @@ k expose pod redis --port=6379 --name redis-service --dry-run=client -o yaml
 # or (will not use label as selector)
 k create service clusterip redis --tcp=6379:6379 --dry-run=client -o yaml
 
+# create NodePort service
 k expose pod nginx --type=NodePort --port=80 --name=nginx-service --dry-run=client -o yaml
-
-
