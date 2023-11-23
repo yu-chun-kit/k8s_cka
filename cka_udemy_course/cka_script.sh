@@ -16,7 +16,7 @@ wget https://storage.googleapis.com/kubernetes-release/release/v1.13.0/bin/linux
 
 # view kube-scheduler options - kubeadm
 cat /etc/kubernetes/manifests/kube-scheduler.yaml
-# or 
+# or
 ps -aux | grep kube-scheduler
 
 # installing kubelet
@@ -42,10 +42,9 @@ kubectl describe pod myapp-pd
 # apply (could update I think) pod
 kubectl apply -f pod.yaml
 
-
 kubectl create deployment httpd-frontend --image=httpd:2.4-alpine --replicas=3
 # or yaml file by dry-run
-kubectl create deployment httpd-frontend --image=httpd:2.4-alpine --replicas=3 --dry-run -o yaml > pod-dry-run.yaml
+kubectl create deployment httpd-frontend --image=httpd:2.4-alpine --replicas=3 --dry-run -o yaml >pod-dry-run.yaml
 # scale replicaset
 kubectl replace -f replicaset-definition.yml
 # or
@@ -57,3 +56,33 @@ k get po
 k get rs
 k get svc
 k get deploy
+
+# set current namespace to other namespace
+kubectl config set-context $(kubectl config current-context) --namespace=dev
+k get ns # namespace
+
+# complete delete and replace
+k replace --force -f nginx.yaml
+
+# -l to add label in imperative command
+k run redis --image=redis:alpine -l tier=db --dry-run=client -o yaml
+
+# create service (default clusterIP)
+k expose pod redis --port=6379 --name redis-service --dry-run=client -o yaml
+# or (will not use label as selector)
+k create service clusterip redis --tcp=6379:6379 --dry-run=client -o yaml
+
+# create NodePort service
+k expose pod nginx --type=NodePort --port=80 --name=nginx-service --dry-run=client -o yaml
+
+k expose pod redis --port 6379 --name redis-service
+k expose pod redis --type="ClusterIP" --name=redis-service --port=6379
+
+# create pod with service
+k run httpd --image=httpd:alpine --port=80 --expose --dry-run=client -o yaml > httpd-pod.yaml
+
+# replace pod with add nodeName property
+k replace --force -f nginx.yaml
+
+# watch pod
+k get po --watch
