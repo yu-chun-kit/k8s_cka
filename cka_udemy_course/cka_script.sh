@@ -73,6 +73,13 @@ k create service clusterip redis --tcp=6379:6379 --dry-run=client -o yaml
 k expose pod nginx --type=NodePort --port=80 --name=nginx-service --dry-run=client -o yaml
 
 k expose pod redis --port 6379 --name redis-service
+k expose pod redis --type="ClusterIP" --name=redis-service --port=6379
 
 # create pod with service
 k run httpd --image=httpd:alpine --port=80 --expose --dry-run=client -o yaml > httpd-pod.yaml
+
+# replace pod with add nodeName property
+k replace --force -f nginx.yaml
+
+# watch pod
+k get po --watch
