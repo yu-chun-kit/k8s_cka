@@ -86,3 +86,6 @@ k replace --force -f nginx.yaml
 
 # watch pod
 k get po --watch
+
+# filter pod with selector
+k get po --selector app=App1
