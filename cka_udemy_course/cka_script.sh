@@ -89,3 +89,5 @@ k get po --watch
 
 # filter pod with selector
 k get po --selector app=App1
+
+k get all --selector="app=App,tier=fronend"
