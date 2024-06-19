@@ -91,3 +91,15 @@ k get po --watch
 k get po --selector app=App1
 
 k get all --selector="app=App,tier=fronend"
+
+# taints
+k taint nodes node1 app=blue:NoSchedule
+
+# toleration
+# have to add toleration in pod definition
+# spec:
+#   tolerations:
+#   - key: "app"
+#     operator: "Equal"
+#     value: "blue"
+#     effect: "NoSchedule"
